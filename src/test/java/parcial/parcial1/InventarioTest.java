@@ -17,22 +17,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author leysa
  */
 public class InventarioTest {
-    
+
     public InventarioTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -44,30 +44,45 @@ public class InventarioTest {
     public void testRegistarProducto() {
         System.out.println("registarProducto");
         String nombre = "";
-        ProductoSimple producto = new ProductoSimple(1200,"salchicha",0,2000,"SLCH");
+        ProductoSimple producto = new ProductoSimple(1200, "salchicha", 0, 2000, "SLCH");
         Inventario instance = new Inventario();
         String expResult = "La cantidad del producto debe ser mayor a 0";
         String result = instance.registarProducto(producto);
         System.out.println(result);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-     if (!result.equals(expResult)) {
+        if (!result.equals(expResult)) {
             fail("The test case is a prototype.");
         }
     }
- 
+
     /**
-     *         //ARRANQUE // DADO // PREPARAR
-        System.out.println("consignar");
-        double valor = -200.00;
-        String ciudad = "VALLEDUPAR";
-        CuentaAhorros instance = new CuentaAhorros("10001", "Cuenta ejemplo", ciudad);
-        String expResult = "El valor a consignar es incorrecto";
-        String result = instance.consignar(valor, ciudad);
+     * Test of registarProducto method, of class Inventario.
+     */
+    @Test
+    public void testRegistarProductoExistente() {
+        System.out.println("registarProductoExistente");
+
+        ProductoSimple producto = new ProductoSimple(1200, "salchicha", 2, 2000, "SLCH");
+        ProductoSimple producto1 = new ProductoSimple(1200, "salchicha", 10, 2000, "SLCH");
+        Inventario instance = new Inventario();
+        String productoResgistrado = instance.registarProducto(producto);
+        String expResult = "Su nueva cantidad de producto es de 12";
+        String result = instance.registarProducto(producto1);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         if (!result.equals(expResult)) {
             fail("The test case is a prototype.");
         }
+    }
+
+    /**
+     *         //ARRANQUE // DADO // PREPARAR System.out.println("consignar"); double
+     * valor = -200.00; String ciudad = "VALLEDUPAR"; CuentaAhorros instance =
+     * new CuentaAhorros("10001", "Cuenta ejemplo", ciudad); String expResult =
+     * "El valor a consignar es incorrecto"; String result =
+     * instance.consignar(valor, ciudad); assertEquals(expResult, result); //
+     * TODO review the generated test code and remove the default call to fail.
+     * if (!result.equals(expResult)) { fail("The test case is a prototype."); }
      */
 }
